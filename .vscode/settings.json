@@ -1,155 +1,205 @@
 {
-    // Genel Ayarlar
-    "workbench.colorTheme": "Vercel Theme",
-    "workbench.startupEditor": "none",
-    "workbench.editor.showTabs": "multiple",
-    "workbench.sideBar.location": "left",
-    "workbench.panel.defaultLocation": "bottom",
-    "workbench.activityBar.location": "default",
-    "workbench.statusBar.visible": true,
-    "window.menuBarVisibility": "toggle",
-    "window.zoomLevel": 0,
-    "zenMode.hideStatusBar": false,
-    "zenMode.hideLineNumbers": false,
-    "winopacity.opacity": 255,
-    // Editör Ayarları
-    "editor.fontSize": 12,
-    "editor.fontFamily": "0xProto",
-    "editor.fontWeight": "bold",
-    "editor.fontLigatures": true,
-    "editor.lineHeight": 1.6,
-    "editor.lineNumbers": "relative",
-    "editor.renderLineHighlight": "all",
-    "editor.cursorBlinking": "smooth",
-    "editor.cursorStyle": "line",
-    "editor.minimap.enabled": false,
-    "editor.bracketPairColorization.enabled": true,
-    "editor.guides.bracketPairs": "active",
-    "editor.formatOnSave": true,
-    "editor.renderWhitespace": "none",
-    // Sözdizimi Renklendirme
-    "editor.tokenColorCustomizations": {
-        "textMateRules": [
-            {
-                "scope": [
-                    "keyword.control",
-                    "keyword.operator"
-                ],
-                "settings": {
-                    "foreground": "#fd007f",
-                    "fontStyle": "bold"
-                }
-            },
-            {
-                "scope": [
-                    "entity.name.function",
-                    "support.function"
-                ],
-                "settings": {
-                    "foreground": "#B89F65",
-                    "fontStyle": "bold italic"
-                }
-            },
-            {
-                "scope": [
-                    "variable",
-                    "support.variable"
-                ],
-                "settings": {
-                    "foreground": "#219957",
-                    "fontStyle": ""
-                }
-            },
-            {
-                "settings": {
-                    "foreground": "#9D7A54"
-                }
-            },
-            {
-                "scope": [
-                    "comment"
-                ],
-                "settings": {
-                    "foreground": "#FFD700",
-                    "fontStyle": "italic"
-                }
-            },
-            {
-                "scope": [
-                    "storage.type"
-                ],
-                "settings": {
-                    "foreground": "#00fcfc",
-                    "fontStyle": "bold"
-                }
-            }
-        ]
-    },
-    // Dosya ve Otomatik Kaydetme
-    "files.autoSave": "afterDelay",
-    "files.autoSaveDelay": 1000,
-    "files.associations": {
-        "energy_meter.h": "c",
-        "ethernet.h": "c",
-        "energy_mqtt.h": "c",
-        "esp_sntp.h": "c",
-        "esp_log.h": "c"
-    },
-    // Terminal Ayarları
-    "terminal.integrated.fontSize": 12,
-    "terminal.integrated.fontFamily": "Hack",
-    "terminal.integrated.lineHeight": 1.6,
-    // Vim Entegrasyonu
-    "vim.useSystemClipboard": true,
-    "vim.handleKeys": {
-        "<C-c>": false,
-        "<C-v>": false,
-        "<C-a>": false
-    },
-    "vim.visualModeKeyBindingsNonRecursive": [
-        {
-            "before": [
-                "<C-a>"
-            ],
-            "commands": [
-                "editor.action.selectAll"
-            ]
+  "workbench.colorTheme": "Vercel Theme",
+  "workbench.startupEditor": "none",
+  "workbench.editor.showTabs": "multiple",
+  "workbench.sideBar.location": "left",
+  "workbench.panel.defaultLocation": "bottom",
+  "workbench.activityBar.location": "default",
+  "workbench.statusBar.visible": true,
+  "window.menuBarVisibility": "toggle",
+  "window.zoomLevel": 0,
+  "zenMode.hideStatusBar": false,
+  "zenMode.hideLineNumbers": false,
+  "winopacity.opacity": 255,
+  "editor.fontSize": 12,
+  "editor.fontFamily": "0xProto",
+  "editor.fontWeight": "bold",
+  "editor.fontLigatures": true,
+  "editor.lineHeight": 1.6,
+  "editor.lineNumbers": "relative",
+  "editor.renderLineHighlight": "all",
+  "editor.cursorBlinking": "smooth",
+  "editor.cursorStyle": "line",
+  "editor.minimap.enabled": false,
+  "editor.bracketPairColorization.enabled": true,
+  "editor.guides.bracketPairs": "active",
+  "editor.formatOnSave": true,
+  "editor.renderWhitespace": "none",
+  "editor.tokenColorCustomizations": {
+    "textMateRules": [
+      {
+        "scope": [
+          "keyword.control",
+          "keyword.operator"
+        ],
+        "settings": {
+          "foreground": "#fd007f",
+          "fontStyle": "bold"
         }
-    ],
-    "vim.insertModeKeyBindingsNonRecursive": [
-        {
-            "before": [
-                "<C-v>"
-            ],
-            "commands": [
-                "editor.action.clipboardPasteAction"
-            ]
+      },
+      {
+        "scope": [
+          "entity.name.function",
+          "support.function"
+        ],
+        "settings": {
+          "foreground": "#B89F65",
+          "fontStyle": "bold italic"
         }
-    ],
-    "vim.normalModeKeyBindingsNonRecursive": [
-        {
-            "before": [
-                "<C-v>"
-            ],
-            "commands": [
-                "editor.action.clipboardPasteAction"
-            ]
+      },
+      {
+        "scope": [
+          "variable",
+          "support.variable"
+        ],
+        "settings": {
+          "foreground": "#219957",
+          "fontStyle": ""
         }
-    ],
-    // Renk Özelleştirmeleri
-    "workbench.colorCustomizations": {
-        "editor.background": "#0A0A12",
-        "sideBar.background": "#101018",
-        "activityBar.background": "#141420",
-        "terminal.background": "#0A0A12",
-        "editor.lineHighlightBackground": "#1A1A2A80",
-        "editor.selectionBackground": "#8c00ff",
-        "editorCursor.foreground": "#FFD700",
-        "editor.foreground": "#E0E0E0",
-        "editorLineNumber.foreground": "#4A4A5A",
-        "editorLineNumber.activeForeground": "#B89F65",
-        "editorBracketMatch.background": "#2E4E3F40",
-        "editorBracketMatch.border": "#5A718455",
-        "statusBar.background": "#06060C"
-    },
+      },
+      {
+        "settings": {
+          "foreground": "#9D7A54"
+        }
+      },
+      {
+        "scope": [
+          "comment"
+        ],
+        "settings": {
+          "foreground": "#FFD700",
+          "fontStyle": "italic"
+        }
+      },
+      {
+        "scope": [
+          "storage.type"
+        ],
+        "settings": {
+          "foreground": "#00fcfc",
+          "fontStyle": "bold"
+        }
+      }
+    ]
+  },
+  "files.autoSave": "afterDelay",
+  "files.autoSaveDelay": 1000,
+  "files.associations": {
+    "energy_meter.h": "c",
+    "ethernet.h": "c",
+    "energy_mqtt.h": "c",
+    "esp_sntp.h": "c",
+    "esp_log.h": "c"
+  },
+  "terminal.integrated.fontSize": 12,
+  "terminal.integrated.fontFamily": "Hack",
+  "terminal.integrated.lineHeight": 1.6,
+  "vim.useSystemClipboard": true,
+  "vim.handleKeys": {
+    "<C-c>": false,
+    "<C-v>": false,
+    "<C-a>": false
+  },
+  "vim.visualModeKeyBindingsNonRecursive": [
+    {
+      "before": [
+        "<C-a>"
+      ],
+      "commands": [
+        "editor.action.selectAll"
+      ]
+    }
+  ],
+  "vim.insertModeKeyBindingsNonRecursive": [
+    {
+      "before": [
+        "<C-v>"
+      ],
+      "commands": [
+        "editor.action.clipboardPasteAction"
+      ]
+    }
+  ],
+  "vim.normalModeKeyBindingsNonRecursive": [
+    {
+      "before": [
+        "<C-v>"
+      ],
+      "commands": [
+        "editor.action.clipboardPasteAction"
+      ]
+    }
+  ],
+  "workbench.colorCustomizations": {
+    "editor.background": "#0A0A12",
+    "sideBar.background": "#101018",
+    "activityBar.background": "#141420",
+    "terminal.background": "#0A0A12",
+    "editor.lineHighlightBackground": "#1A1A2A80",
+    "editor.selectionBackground": "#8c00ff",
+    "editorCursor.foreground": "#FFD700",
+    "editor.foreground": "#E0E0E0",
+    "editorLineNumber.foreground": "#4A4A5A",
+    "editorLineNumber.activeForeground": "#B89F65",
+    "editorBracketMatch.background": "#2E4E3F40",
+    "editorBracketMatch.border": "#5A718455",
+    "statusBar.background": "#06060C"
+  },
+  "C_Cpp_Runner.cCompilerPath": "gcc",
+  "C_Cpp_Runner.cppCompilerPath": "g++",
+  "C_Cpp_Runner.debuggerPath": "gdb",
+  "C_Cpp_Runner.cStandard": "",
+  "C_Cpp_Runner.cppStandard": "",
+  "C_Cpp_Runner.msvcBatchPath": "C:/Program Files/Microsoft Visual Studio/VR_NR/Community/VC/Auxiliary/Build/vcvarsall.bat",
+  "C_Cpp_Runner.useMsvc": false,
+  "C_Cpp_Runner.warnings": [
+    "-Wall",
+    "-Wextra",
+    "-Wpedantic",
+    "-Wshadow",
+    "-Wformat=2",
+    "-Wcast-align",
+    "-Wconversion",
+    "-Wsign-conversion",
+    "-Wnull-dereference"
+  ],
+  "C_Cpp_Runner.msvcWarnings": [
+    "/W4",
+    "/permissive-",
+    "/w14242",
+    "/w14287",
+    "/w14296",
+    "/w14311",
+    "/w14826",
+    "/w44062",
+    "/w44242",
+    "/w14905",
+    "/w14906",
+    "/w14263",
+    "/w44265",
+    "/w14928"
+  ],
+  "C_Cpp_Runner.enableWarnings": true,
+  "C_Cpp_Runner.warningsAsError": false,
+  "C_Cpp_Runner.compilerArgs": [],
+  "C_Cpp_Runner.linkerArgs": [],
+  "C_Cpp_Runner.includePaths": [],
+  "C_Cpp_Runner.includeSearch": [
+    "*",
+    "**/*"
+  ],
+  "C_Cpp_Runner.excludeSearch": [
+    "**/build",
+    "**/build/**",
+    "**/.*",
+    "**/.*/**",
+    "**/.vscode",
+    "**/.vscode/**"
+  ],
+  "C_Cpp_Runner.useAddressSanitizer": false,
+  "C_Cpp_Runner.useUndefinedSanitizer": false,
+  "C_Cpp_Runner.useLeakSanitizer": false,
+  "C_Cpp_Runner.showCompilationTime": false,
+  "C_Cpp_Runner.useLinkTimeOptimization": false,
+  "C_Cpp_Runner.msvcSecureNoWarnings": false
 }

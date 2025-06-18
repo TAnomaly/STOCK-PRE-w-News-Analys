@@ -61,20 +61,17 @@ def create_sequences(data, seq_length):
 
 def create_lstm_model(seq_length, n_features):
     model = Sequential([
-        LSTM(256, return_sequences=True, input_shape=(seq_length, n_features)),
-        Dropout(0.3),
-        LSTM(128, return_sequences=True),
-        Dropout(0.3),
+        LSTM(128, return_sequences=True, input_shape=(seq_length, n_features)),
+        Dropout(0.2),
         LSTM(64, return_sequences=False),
-        Dropout(0.3),
+        Dropout(0.2),
         Dense(32, activation='relu'),
-        Dense(16, activation='relu'),
         Dense(1)
     ])
     
     model.compile(optimizer=tf.keras.optimizers.Adam(learning_rate=0.001),
                  loss='mse',
-                 metrics=['mae', 'mse'])
+                 metrics=['mae'])
     return model
 
 def get_stock_data(symbol):
@@ -88,17 +85,18 @@ def prepare_data(hist, symbol):
     filtered_close = apply_kalman_filter(hist['Close'].values)
     hist['Filtered_Close'] = filtered_close
 
-    # Teknik göstergeler
-    hist['MA5'] = hist['Close'].rolling(window=5).mean()
-    hist['MA20'] = hist['Close'].rolling(window=20).mean()
+    # Teknik göstergeler - numpy ile hızlandırılmış hesaplama
+    close_array = hist['Close'].values
+    hist['MA5'] = pd.Series(np.convolve(close_array, np.ones(5)/5, mode='valid'), index=hist.index[4:])
+    hist['MA20'] = pd.Series(np.convolve(close_array, np.ones(20)/20, mode='valid'), index=hist.index[19:])
     
     # Haber analizi
     news_analyzer = NewsAnalyzer()
     news_features = news_analyzer.get_news_features(symbol)
     
-    # Haber özelliklerini ekle (etkisini daha da azalt)
-    hist['News_Sentiment'] = news_features['news_sentiment'] * 0.15  # %15 etki
-    hist['Has_Recent_News'] = news_features['has_recent_news'] * 0.1  # %10 etki
+    # Haber özelliklerini ekle
+    hist['News_Sentiment'] = news_features['news_sentiment'] * 0.15
+    hist['Has_Recent_News'] = news_features['has_recent_news'] * 0.1
     
     # NaN değerleri temizle
     hist = hist.dropna()
@@ -113,27 +111,29 @@ def home():
 def analyze():
     try:
         symbol = request.form['symbol']
+        
+        # Paralel işlem için haber analizini önce başlat
+        news_analyzer = NewsAnalyzer()
+        news_features = news_analyzer.get_news_features(symbol)
+        
+        # Hisse senedi verisini al
         hist = get_stock_data(symbol)
         
         if hist.empty:
             return jsonify({'success': False, 'error': 'Veri bulunamadı'})
         
-        # Haber analizini yap
-        news_analyzer = NewsAnalyzer()
-        news_features = news_analyzer.get_news_features(symbol)
-        
         # Veriyi hazırla
         processed_data = prepare_data(hist, symbol)
         
-        # Random Forest için özellikler
+        # Random Forest için özellikler - numpy array'leri kullan
         features_rf = ['Open', 'High', 'Low', 'Volume', 'MA5', 'MA20', 'News_Sentiment', 'Has_Recent_News']
         X_rf = processed_data[features_rf].values
         y_rf = processed_data['Close'].values
         
-        # LSTM için veri hazırlama
-        seq_length = 30
-        n_features = 7
-        features_lstm = ['Open', 'High', 'Low', 'Volume', 'Filtered_Close', 'News_Sentiment', 'Has_Recent_News']
+        # LSTM için veri hazırlama - daha az özellik kullan
+        seq_length = 20  # Sequence uzunluğunu azalttık
+        n_features = 5
+        features_lstm = ['Open', 'High', 'Low', 'Volume', 'Filtered_Close']  # Daha az özellik
         data_lstm = processed_data[features_lstm].values
         
         # Veriyi normalize et
@@ -169,8 +169,8 @@ def analyze():
         # Model eğitimi
         history = lstm_model.fit(
             X_train_lstm, y_train_lstm,
-            epochs=200,
-            batch_size=64,
+            epochs=100,
+            batch_size=128,
             validation_split=0.2,
             callbacks=[early_stopping, reduce_lr],
             verbose=0
